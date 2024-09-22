@@ -2,7 +2,7 @@ import ReactDOM from "react-dom/client";
 import './App.css';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
-import About from './components/About';
+// import About from './components/About';
 import React, {useState} from 'react';
 import Alert from './components/Alert';
 import {
@@ -40,17 +40,20 @@ export default function App() {
 
   return (
     <>
-    <Router>
+    {/* <Router> */}
       <Navbar title="Textify" mode={mode} toggleMode={toggleMode}/>
       <Alert alert={alert} />
+      <TextForm heading="Enter the text to analyze" mode={mode} showAlert={showAlert}  />
       <div className="container my-3">
 
-          <Routes>
+          {/* <Routes>
             <Route exact path="/about" element={<About />} />
             <Route exact path="/" element={<TextForm heading="Enter the text to analyze" mode={mode} showAlert={showAlert} />} />
-          </Routes>
+          </Routes> */}
+
+
           </div>
-      </Router>
+      {/* </Router> */}
     </>
   )
 }
