@@ -109,7 +109,7 @@ export default function TextForm(props) {
             <button className="btn btn-primary mx-2 my-2" onClick={handleSpeak}>Speak</button>
             <button className="btn btn-primary mx-2 my-2" onClick={handleUpClick}>Convert to Uppercase</button>
             <button className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>Convert to Lowercase</button>
-            <button className="btn btn-primary mx-2 my-2" onClick={handleClear}>Claer Text</button>
+            <button className="btn btn-primary mx-2 my-2" onClick={handleClear}>Clear Text</button>
             <button className="btn btn-primary mx-2 my-2" onClick={handleReverse}>Reverse Text</button>
             <button className="btn btn-primary mx-2 my-2" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
             <button className="btn btn-primary mx-2 my-2" onClick={() => setShowFindModal(true)}>Find</button>
@@ -119,14 +119,15 @@ export default function TextForm(props) {
 
             
             <div className='container my-3' style={{color: props.mode ==='dark' ? 'white' : 'black'}}>
-                <h1>Your text summary</h1>
-                <h3>Preview</h3>
+                <h1>Your Text Summary</h1>
+                <h4>Preview</h4>
                 <p>{text.length > 0 ? text : "Enter text to preview it here"}</p>
                 <hr />
                 <p> <b> Word Count - </b>  
-                    {text.length===0 ? 0 : text.replace(/\s+/g, ' ').trim().split(" ").length} <b> Character count -  </b> {text.length} </p>
-                <p>  <b> charcter count without spaces - </b> {text.replace(/\s+/g,'').length}</p>
-                <p> {0.008 * text.split(" ").length} Minutes to read </p>
+                    {text.length===0 ? 0 : text.replace(/\s+/g, ' ').trim().split(" ").length}</p>
+                    <p> <b>Character count -  </b> {text.length} </p>
+                <p>  <b> Character count without spaces - </b> {text.replace(/\s+/g,'').length}</p>
+                <p> <b> Time - </b>{0.008 * text.split(" ").length} Minutes to read </p>
                 <p> <b> Vowel count - </b> {text.match(/[aeiouAEIOU]/g)?.length || 0} </p>
                 <p> <b> Consonant count - </b> {text.match(/[qQWwrRTtyYpPSsdDFfgGHhjJkKlLmMnNbBvVcCxXzZ]/g)?.length || 0} </p>
                 <p><b>Sentence Count - </b> {text.split(/[.!?]/).filter(sentence => sentence.trim().length > 0).length || 0}</p>
