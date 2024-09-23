@@ -97,7 +97,7 @@ export default function TextForm(props) {
     return (
         <>
             <div className='container' style={{color: props.mode ==='dark' ? 'white' : 'black'}}>
-            <h1>{props.heading}</h1>
+            <h1 style={{marginBottom: "20px"}}>{props.heading}</h1>
             <div className="mb-3">
             {/* <label htmlFor="myBox" className="form-label">Example textarea</label> */}
             <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode ==='dark' ? '#3b3b3b' : 'white', color: props.mode ==='dark' ? 'white' : 'black'  }} id="myBox" rows="8"></textarea>
@@ -127,7 +127,7 @@ export default function TextForm(props) {
                     {text.length===0 ? 0 : text.replace(/\s+/g, ' ').trim().split(" ").length}</p>
                     <p> <b>Character count -  </b> {text.length} </p>
                 <p>  <b> Character count without spaces - </b> {text.replace(/\s+/g,'').length}</p>
-                <p> <b> Time - </b>{0.008 * text.split(" ").length} Minutes to read </p>
+                <p> <b> Time - </b>{0.008 * text.length===0 ? 0 : text.replace(/\s+/g, ' ').trim().split(" ").length} Minutes to read </p>
                 <p> <b> Vowel count - </b> {text.match(/[aeiouAEIOU]/g)?.length || 0} </p>
                 <p> <b> Consonant count - </b> {text.match(/[qQWwrRTtyYpPSsdDFfgGHhjJkKlLmMnNbBvVcCxXzZ]/g)?.length || 0} </p>
                 <p><b>Sentence Count - </b> {text.split(/[.!?]/).filter(sentence => sentence.trim().length > 0).length || 0}</p>
