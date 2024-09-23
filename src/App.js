@@ -1,15 +1,8 @@
-import ReactDOM from "react-dom/client";
 import './App.css';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
-// import About from './components/About';
-import React, {useState} from 'react';
+import React, {useState, useRef } from 'react';
 import Alert from './components/Alert';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
 
 export default function App() {
   const [mode, setmode] = useState('light');
@@ -19,11 +12,18 @@ export default function App() {
     setAlert({
       msg: message,
       type: type,
-    })
-    setTimeout(()=> {
+    });
+
+    if(alertTimeout) {
+      clearTimeout(alertTimeout);
+    }
+
+    alertTimeout = setTimeout(()=> {
       setAlert(null);
     }, 2000)
   }
+
+  let alertTimeout = null;
 
   let toggleMode = () => {
     if(mode === 'light') {
@@ -40,20 +40,9 @@ export default function App() {
 
   return (
     <>
-    {/* <Router> */}
       <Navbar title="Textify" mode={mode} toggleMode={toggleMode}/>
-      <Alert alert={alert} />
+      <Alert alert={alert} setAlert={setAlert} />
       <TextForm heading="Enter the text to analyze" mode={mode} showAlert={showAlert}  />
-      <div className="container my-3">
-
-          {/* <Routes>
-            <Route exact path="/about" element={<About />} />
-            <Route exact path="/" element={<TextForm heading="Enter the text to analyze" mode={mode} showAlert={showAlert} />} />
-          </Routes> */}
-
-
-          </div>
-      {/* </Router> */}
     </>
   )
 }
